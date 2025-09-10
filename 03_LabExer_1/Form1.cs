@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,27 +32,31 @@ namespace _03_LabExer_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StudentInfo.SetFullname = txtLastName.Text + ", "
-                + txtFirstName.Text + " " + txtMi.Text;
-            StudentInfo.SetStudentNo = int.Parse(txtStudent.Text);
-            StudentInfo.SetProgram = comboBox1.Text;
-            StudentInfo.SetGender = comboBox2.Text;
-            StudentInfo.SetContactNo = long.Parse(txtNum.Text);
-            StudentInfo.SetAge = int.Parse(txtAge.Text);
-            StudentInfo.SetBirthday = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-
-            FrmConfirm frm = new FrmConfirm();
-            frm.ShowDialog();
-
             try
             {
+                StudentInfo.SetFullname = txtLastName.Text + ", "
+                    + txtFirstName.Text + " " + txtMi.Text;
                 StudentInfo.SetStudentNo = int.Parse(txtStudent.Text);
+                StudentInfo.SetProgram = comboBox1.Text;
+                StudentInfo.SetGender = comboBox2.Text;
+                StudentInfo.SetContactNo = long.Parse(txtNum.Text);
+                StudentInfo.SetAge = int.Parse(txtAge.Text);
+                StudentInfo.SetBirthday = dateTimePicker1.Value.ToString("yyyy-MM-dd");
 
+                FrmConfirm frm = new FrmConfirm();
+                frm.ShowDialog();
             }
-            catch
+
+            catch(FormatException)
             {
-                MessageBox.Show("Invalid Student Number Format");
+                MessageBox.Show("Invalid Student No. Format");
             }
+            catch(Exception SetFullName)
+            {
+                MessageBox.Show("Invalid Name Format");
+            }
+            
+ 
             finally
             {
                 Console.WriteLine("VALIDATION DONE.");
