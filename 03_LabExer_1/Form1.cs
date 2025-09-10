@@ -49,7 +49,7 @@ namespace _03_LabExer_1
 
             catch(FormatException)
             {
-                MessageBox.Show("Invalid Student No. Format");
+                MessageBox.Show("Invalid Format");
             }
             catch(Exception SetFullName)
             {
