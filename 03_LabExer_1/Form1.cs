@@ -51,7 +51,7 @@ namespace _03_LabExer_1
             {
                 MessageBox.Show("Invalid Format");
             }
-            catch(Exception SetFullName)
+            catch(ArgumentException)
             {
                 MessageBox.Show("Invalid Name Format");
             }
